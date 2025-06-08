@@ -1,15 +1,15 @@
-in_room(monkey). 
-in_room(chair). 
-in_room(banana). 
-can_move(monkey, chair). 
-can_climb(monkey, chair). 
-banana_hanging_from_ceiling. 
-chair_under_banana. 
-can_reach_banana :- 
-    in_room(monkey), 
-    in_room(chair), 
-    in_room(banana), 
-    can_move(monkey, chair), 
-    chair_under_banana, 
-    can_climb(monkey, chair), 
-    banana_hanging_from_ceiling.
+move1(state(on_floor, at_door, no),
+ move_to_window,
+ state(on_floor, at_window, no)).
+
+move2(state(on_floor, at_window, has_box),
+ push_box,
+ state(on_floor, under_banana, has_box)).
+
+move3(state(on_floor, under_banana, has_box),
+ climb_box,
+ state(on_box, under_banana, has_box)).
+
+move4(state(on_box, under_banana, has_box),
+ grasp_banana,
+ state(on_box, under_banana, has_banana)).
